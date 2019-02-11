@@ -1,0 +1,71 @@
+﻿@page "/account/register"
+@inherits RegisterComponent
+
+
+<h1>Opret bruger</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <h4>Create a new account.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input id="email" class="form-control" bind="@Email" />
+                @if (!string.IsNullOrWhiteSpace(EmailError))
+                {
+                    <span class="text-danger">@EmailError</span>
+                }
+            </div>
+            <div class="form-group">
+                <label for="password">Kodeord *</label>
+                <input id="password" class="form-control" bind="@Password" />
+                @if (!string.IsNullOrWhiteSpace(PasswordError))
+                {
+                    <span class="text-danger">@PasswordError</span>
+                }
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Gentag kodeord *</label>
+                <input id="confirm-password" class="form-control" bind="@ConfirmPassword" />
+                @if (!string.IsNullOrWhiteSpace(ConfirmPasswordError))
+                {
+                    <span class="text-danger">@ConfirmPasswordError</span>
+                }
+            </div>
+            <button class="btn btn-primary" onclick="@RegisterAccount">Register</button>
+        </section>
+    </div>
+
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h4>Use another service to log in.</h4>
+            <hr />
+            @{
+                if ((ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                            for details on setting up this ASP.NET application to support logging in via external services.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" action="Identity/Account/ExternalLogin@(!string.IsNullOrWhiteSpace(ReturnUrl) ? "ReturnUrl=" + ReturnUrl : "")" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in ExternalLogins)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>
+</div>

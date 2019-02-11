@@ -1,7 +1,7 @@
 ﻿using NodaTime;
 using System;
 
-namespace Grundlov.Server.Models
+namespace Grundlov.App.Models
 {
     public class ArticleComment
     {

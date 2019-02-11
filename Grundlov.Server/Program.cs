@@ -14,8 +14,8 @@ namespace Grundlov.Server
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseConfiguration(new ConfigurationBuilder()
-                    .AddCommandLine(args)
                     .AddJsonFile("appsettings.json")
+                    .AddCommandLine(args)
                     .Build())
                 .UseStartup<Startup>()
                 .Build();

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Grundlov.Server.Migrations
+namespace Grundlov.App.Migrations
 {
     public partial class InitialModel : Migration
     {

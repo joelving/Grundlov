@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Grundlov.Server.Models
+namespace Grundlov.App.Models
 {
     public class Constitution
     {
